@@ -7,7 +7,7 @@ import {login} from "./actions/authActions";
 import {setDataForUser} from "./actions/api";
 const composeEnhancer = compose(
     applyMiddleware(thunk.withExtraArgument(axiosInstance)),
-    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+    // window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
 );
 let store = createStore(
     reducer,//reducers
