@@ -1,0 +1,166 @@
+.movie-card {
+    min-width: 200px;
+    overflow: auto;
+    display: inline-block;
+    font-size: 12px;
+    line-height: 1.7em;
+    background-color: #fff;
+    margin: 36px 12px;
+    box-shadow: 0 0px 15px -4px rgba(111, 111, 111, 0.3);
+    width: 23.2%;
+    position: relative;
+    .card-top{
+        text-decoration: none;
+        color: #333;
+        display: grid;
+        .movie-backdrop {
+            max-width: 100%;
+        }
+        .mv-name {
+            font-weight: 800;
+            font-size: 18px;
+        }
+        span {
+            display: block;
+            margin: 5px 0px;
+            padding: 0 18px;
+        }
+    }
+    .card-btm {
+        position: absolute;
+        bottom: -29px;
+        width: 100%;
+        transition: 0.3s ease all;
+        button{
+            border-radius: 2px;
+            width: 100%;
+            height: 36px;
+            border: none;
+            background-color: #0091EA;
+            color: #fff;
+            z-index: 1;
+            cursor: pointer;
+            &:hover,&:active,&:focus{
+                outline : none;
+            }
+        }
+    }
+    &:hover{
+        .card-btm{
+            bottom : 0px;
+            transition: 0.3s ease all;
+        }
+    }
+}
+.movie-list-row {
+    margin-bottom: 2em;
+    p{
+        font-size: 0.6em;
+        color: #333;
+        font-weight: 700;
+        margin: 0px;
+        margin-bottom: 1em;
+    }
+    .movie-list{
+        display: flex;
+        flex-direction: row;
+        overflow: auto;
+        margin: 0em 0px;
+    }
+    .view-more-row{
+        margin-top: 0.4em;
+        a{
+            font-size: 0.4em;
+            color: #3176ff;
+            float: right;
+        }
+    }
+}
+
+.movie-wrapper{
+    .backdrop{
+        height: 50vh;
+        overflow: hidden;
+        position: relative;
+        margin-top: -0.8em;
+        .certy{
+            position: absolute;
+            top: 10px;
+            font-size: 1em;
+            padding: 17px 24px 20px 11px;
+            &::after{
+                border-radius: 50%;
+                border: 3px solid #fff;
+                height: 2em;
+                content: "";
+                position: absolute;
+                width: 2em;
+                left: -8px;
+                top: -16px;
+                margin: 17px 24px 20px 11px;
+            }
+        }
+        .mv-img-bg{
+            width: 100%;
+            height: auto;
+        }
+    }
+    .card{
+        color: #333;
+        position: relative;
+        margin-top: -1.8em;
+        background-color: #fff;
+        box-shadow: 0 0px 15px -4px rgba(111, 111, 111, 0.3);
+        border-radius: 3px;
+        padding: 1em;
+        margin: auto;
+        width: 90%;
+        h4{
+            font-size: 1em;
+            font-weight: 900;
+            margin: 0em 0em;
+        }
+        .tagline{
+            font-size: 0.5em;
+        }
+        .desc{
+            p{
+                color: #8e8e8e;
+                font-weight: 100;
+                font-size: 16px;
+                line-height: 1.6em;
+            }
+        }
+    }
+    .info{
+        color: #fff;
+        position: relative;
+        background-color: rgba(0, 0, 0, 0.21);
+        font-size: 0.5em;
+        margin: auto;
+        width: 90%;
+        margin-top: -6em;
+        margin-bottom: 1em;
+        padding: 1em 1em;
+        .info-wrap{
+            &:last-child{
+                float: right;
+            }
+            .tag{
+                font-size: 0.7em;
+                padding: 6px 8px;
+                border-radius: 2px;
+                line-height: 0.7em;
+                display: inline-block;
+            }
+            .date{
+                vertical-align: middle;
+                margin-left: 1em;
+            }
+        }
+    }
+}
+
+.success{
+    background-color: #0ba017 !important;
+}

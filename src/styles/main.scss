@@ -1,0 +1,18 @@
+@import "./normalize.scss";
+
+body {
+    background:#e2edf3;
+    color: #fff;
+    font-family: "Roboto", sans-serif;
+    font-size: 36px;
+}
+
+.container{
+    margin: auto 1em;
+}
+
+
+@import "./Components/Input.scss";
+@import "./Components/Login.scss";
+@import "./Components/Movie.scss";
+@import "./Components/Nav.scss";
