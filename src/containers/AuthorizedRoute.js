@@ -1,7 +1,7 @@
 import React, {Component} from "react";
 import {Route, Redirect} from "react-router-dom";
 import {connect} from "react-redux";
-
+import Nav from "./../components/Nav";
 class AuthorizedRoute extends Component {
 
     render() {
@@ -15,7 +15,12 @@ class AuthorizedRoute extends Component {
             <Route
                 {...rest}
                 render={props => {
-                    return isAuthenticated ? <Component {...props}/> : <Redirect to="/login"/>
+                    return isAuthenticated ? 
+                    <React.Fragment>
+                        <Nav/>
+                        <Component {...props}/> 
+                    </React.Fragment>
+                    : <Redirect to="/login"/>
                 }
             }/>
         );

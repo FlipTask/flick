@@ -7,6 +7,8 @@ import {
     setMovie,
     setMovieFailure,
     setWatchList,
+    setLatestMovies,
+    latestMoviesFailure
 } from "./movieActions";
 import {axiosInstance} from "./../Api";
 import {
@@ -57,7 +59,7 @@ export const fetchTopRatedMovies = (page=1) => async(dispatch,getState,api) => {
 };
 
 export const fetchTrendingMovies = (page=1) => async(dispatch,getState,api) => {
-    const res = await api.get("/trending/movie/week?language=en-US&page="+page+"1&api_key=5957e53f1b383aa9112069754a87cd3f");
+    const res = await api.get("/trending/movie/week?language=en-US&page="+page+"1&api_key=5957e53f1b383aa9112069754a87cd3f&&include_adult=true&append_to_response=videos");
     if(res.data.results){
         const list = res.data.results;
         dispatch(setTrendingMovies(list));
@@ -67,7 +69,7 @@ export const fetchTrendingMovies = (page=1) => async(dispatch,getState,api) => {
 };
 
 export const fetchMovieById = (id) => async(dispatch,getState,api) => {
-    const res = await api.get("/movie/"+id+"?api_key=5957e53f1b383aa9112069754a87cd3f&language=en-US");
+    const res = await api.get("/movie/"+id+"?api_key=5957e53f1b383aa9112069754a87cd3f&language=en-US&append_to_response=videos");
     if(res.data.id){
         dispatch(setMovie(res.data));
     }else{
@@ -76,7 +78,7 @@ export const fetchMovieById = (id) => async(dispatch,getState,api) => {
 }
 
 export const searchMovieByName = (keyword) => async(dispatch,getState,api) => {
-    const res = await api.get("/search/movie?query="+keyword+"&api_key=5957e53f1b383aa9112069754a87cd3f&language=en-US&page=1&include_adult=false")
+    const res = await api.get("/search/movie?query="+keyword+"&api_key=5957e53f1b383aa9112069754a87cd3f&language=en-US&page=1&include_adult=true")
     return res.data;
 } 
 
@@ -84,3 +86,13 @@ export const logoutUser = () => async(dispatch,getState,api) => {
     dispatch(setAuthorization(null));
     dispatch(logout());
 }
+
+export const getLatestMovies = (page=1) => async(dispatch,getState,api) => {
+    const res = await api.get("/movie/upcoming?language=en-US&page="+page+"&api_key=5957e53f1b383aa9112069754a87cd3f");
+    if(res.data.results){
+        const list = res.data.results;
+        dispatch(setLatestMovies(list));
+    }else{
+        dispatch(latestMoviesFailure());
+    }
+};

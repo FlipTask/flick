@@ -10,10 +10,12 @@ import {
     TOGGLE_WATCH_LIST,
     SET_WATCH_LIST,
     LOGOUT,
+    LATEST_MOVIES_FETCH_FAILURE,
+    LATEST_MOVIES_FETCH_SUCCESS
 } from "./../constants/ActionTypes";
 
 const initialState = {
-    isAuthorised : false,
+    isAuthorised : true,
     username : null,
     watchlist : [],
     watchlist_movies : [],
@@ -30,6 +32,12 @@ const initialState = {
             list : [],
         },
         top_rated : {
+            top : [],
+            error : false,
+            msg : "",
+            list : []
+        },
+        latest : {
             top : [],
             error : false,
             msg : "",
@@ -167,6 +175,34 @@ export default function(state = initialState, action){
                 ...state,
                 isAuthorised :false,
                 username : null
+            });
+        case LATEST_MOVIES_FETCH_SUCCESS:
+            return Object.assign({},state,{
+                ...state,
+                movies : {
+                    ...state.movies,
+                    latest : {
+                        error : false,
+                        msg : "",
+                        list : [
+                            ...state.movies.latest.list,
+                            ...action.payload
+                        ],
+                        top : action.payload.filter((m,i) => i < 10)
+                    }
+                }
+            });
+        case LATEST_MOVIES_FETCH_FAILURE:
+            return Object.assign({},state,{
+                ...state,
+                movies : {
+                    ...state.movies,
+                    trending : {
+                        ...state.movies.latest,
+                        error : true,
+                        msg : action.payload,
+                    }
+                }
             });
         default:
             return state;

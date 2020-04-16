@@ -20,6 +20,7 @@ class AppRoutes extends Component{
                     <AuthorizedRoute path="/movie/:movie_id" component={Movie}/>
                     <AuthorizedRoute path="/trending" component={MovieList} listName="trending"/>
                     <AuthorizedRoute path="/top_rated" component={MovieList} listName="top_rated"/>
+                    <AuthorizedRoute path="/latest" component={MovieList} listName="latest"/>
                     <AuthorizedRoute path="/" component={Home} extact/>
                 </Switch>
             </Router>

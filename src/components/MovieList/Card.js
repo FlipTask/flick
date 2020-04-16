@@ -2,7 +2,8 @@ import React, {Component} from "react";
 import {connect} from "react-redux";
 import {Link} from "react-router-dom";
 import {toggleWatchList} from "./../../actions/movieActions";
-
+import Cert from "./../Cert";
+import {getYear} from "./../../helpers";
 class Card extends Component {
     checkIfInWatchLIst = (movie) => {
         const watchlist = this.props.watchlist;
@@ -20,6 +21,12 @@ class Card extends Component {
         const {src, title, rating, date, id,movie} = this.props;
         return (
             <div className="movie-card">
+                <div className="mov--info">
+                    <p>
+                        <span>{getYear(movie.release_date)}</span>
+                        <Cert adult={movie.adult}/>
+                    </p>
+                </div>
                 <Link to={`/movie/${id}`} className="card-top">
                     <img
                         src={`https://image.tmdb.org/t/p/original${src}`}

@@ -16,7 +16,7 @@ class MovieList extends Component {
                             return (<Card
                                 movie={movie}
                                 id={movie.id}
-                                src={movie.backdrop_path}
+                                src={movie.poster_path}
                                 title={movie.original_title}
                                 rating={movie.vote_average}
                                 date={movie.release_date}

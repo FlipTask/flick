@@ -9,7 +9,6 @@ class WatchList extends Component {
         const {list} = this.props;
         return (
             <div className="container">
-                <Nav />
                 <p>Your watch list</p>
                 {
                     list.length > 0 

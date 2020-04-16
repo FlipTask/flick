@@ -18,11 +18,11 @@
 }
 .innov--input{
     width: 26em;
-    background-color: #e4edf2;
+    background-color: rgba(228, 237, 242, 0.16);
     height: 40px;
     padding: 0 1em;
     font-size: 14px;
-    color: #000;
+    color: #ddd;
     padding-left: 10px;
     padding-top: 5px;
     padding-bottom: 5px;
@@ -32,4 +32,5 @@
     border-style: initial;
     border-color: initial;
     border-image: initial;
+    outline: none;
 }

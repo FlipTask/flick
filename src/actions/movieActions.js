@@ -7,6 +7,8 @@ import {
     MOVIE_BY_ID_FETCH_FAILURE,
     TOGGLE_WATCH_LIST,
     SET_WATCH_LIST,
+    LATEST_MOVIES_FETCH_FAILURE,
+    LATEST_MOVIES_FETCH_SUCCESS
 } from "./../constants/ActionTypes";
 
 export const setTopRatedMovies = (payload) => {
@@ -30,6 +32,19 @@ export const setTrendingMovies = (payload) => {
     };
 };
 
+export const setLatestMovies = (payload) => {
+    return {
+        type: LATEST_MOVIES_FETCH_SUCCESS,
+        payload
+    }    
+}
+
+export const latestMoviesFailure = () => {
+    return {
+        type: LATEST_MOVIES_FETCH_FAILURE,
+        payload : "Something went wrong !"
+    }
+}
 export const trendingMoviefailure = () => {
     return {
         type : TRENDING_MOVIES_FETCH_FAILURE,

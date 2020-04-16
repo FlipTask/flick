@@ -1,15 +1,25 @@
 .movie-card {
-    min-width: 200px;
+    min-width: 300px;
     overflow: auto;
     display: inline-block;
     font-size: 12px;
     line-height: 1.7em;
     background-color: #fff;
     margin: 36px 12px;
-    box-shadow: 0 0px 15px -4px rgba(111, 111, 111, 0.3);
+    box-shadow: 0 0 15px -4px rgba(111, 111, 111, 0.3);
     width: 23.2%;
     position: relative;
-    .card-top{
+    .mov--info {
+        padding: 1em;
+        position: absolute;
+        width: 100%;
+        height: 20%;
+        background: linear-gradient(180deg, #000000e3 5%, #000000d4 21%, rgba(0, 0, 0, 0) 100%);
+        p {
+            font-size: 1em;
+        }
+    }
+    .card-top {
         text-decoration: none;
         color: #333;
         display: grid;
@@ -19,10 +29,11 @@
         .mv-name {
             font-weight: 800;
             font-size: 18px;
+            display: none;
         }
         span {
-            display: block;
-            margin: 5px 0px;
+            display: none;
+            margin: 5px 0;
             padding: 0 18px;
         }
     }
@@ -31,7 +42,7 @@
         bottom: -29px;
         width: 100%;
         transition: 0.3s ease all;
-        button{
+        button {
             border-radius: 2px;
             width: 100%;
             height: 36px;
@@ -40,36 +51,45 @@
             color: #fff;
             z-index: 1;
             cursor: pointer;
-            &:hover,&:active,&:focus{
-                outline : none;
+            &:active,
+            &:focus,
+            &:hover {
+                outline: none;
             }
         }
     }
-    &:hover{
-        .card-btm{
-            bottom : 0px;
+    &:hover {
+        .card-btm {
+            bottom: 0;
             transition: 0.3s ease all;
         }
     }
 }
 .movie-list-row {
     margin-bottom: 2em;
-    p{
+    p {
         font-size: 0.6em;
-        color: #333;
+        color: #ddd;
         font-weight: 700;
-        margin: 0px;
-        margin-bottom: 1em;
+        margin: 0;
     }
-    .movie-list{
+    .movie-list {
         display: flex;
         flex-direction: row;
         overflow: auto;
-        margin: 0em 0px;
+        margin: 0;
+        .movie-card {
+            &:first-child {
+                margin-left: 0;
+            }
+            &:last-child {
+                margin-right: 0;
+            }
+        }
     }
-    .view-more-row{
+    .view-more-row {
         margin-top: 0.4em;
-        a{
+        a {
             font-size: 0.4em;
             color: #3176ff;
             float: right;
@@ -77,20 +97,31 @@
     }
 }
 
-.movie-wrapper{
-    .backdrop{
-        height: 50vh;
-        overflow: hidden;
+.movie-wrapper {
+    .backdrop {
         position: relative;
-        margin-top: -0.8em;
-        .certy{
+        .movie-cover-wrapper {
+            height: 70vh;
+            overflow: hidden;
+            margin-top: -0.8em;
+            .mv-img-bg {
+                width: 100%;
+                height: auto;
+                filter: blur(6px);
+                transform: scale(1.1);
+            }
+        }
+        .certy {
             position: absolute;
-            top: 10px;
-            font-size: 1em;
+            top: 0;
+            font-size: 0.6em;
             padding: 17px 24px 20px 11px;
-            &::after{
+            right: 0;
+            font-weight: 700;
+            z-index: 1;
+            &::after {
                 border-radius: 50%;
-                border: 3px solid #fff;
+                // border: 3px solid #fff;
                 height: 2em;
                 content: "";
                 position: absolute;
@@ -100,31 +131,48 @@
                 margin: 17px 24px 20px 11px;
             }
         }
-        .mv-img-bg{
-            width: 100%;
-            height: auto;
-        }
     }
-    .card{
+    .card {
         color: #333;
         position: relative;
-        margin-top: -1.8em;
+        // margin-top: -1.8em;
         background-color: #fff;
-        box-shadow: 0 0px 15px -4px rgba(111, 111, 111, 0.3);
-        border-radius: 3px;
+        box-shadow: 0 0 15px 1px rgba(0, 0, 0, 0.4);
+        border-radius: 0px;
         padding: 1em;
         margin: auto;
         width: 90%;
-        h4{
+        top: -10em;
+        
+        .__mov--details {
+            width: 50%;
+            box-sizing: border-box;
+            display: inline-block;
+        }
+        .row {
+            display: flex;
+        }
+        .__movie_poster {
+            width: 50%;
+            box-sizing: border-box;
+            display: inline-block;
+            margin: -1em -1em -1em auto;
+            img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+            }
+        }
+        h4 {
             font-size: 1em;
             font-weight: 900;
-            margin: 0em 0em;
+            margin: 0;
         }
-        .tagline{
+        .tagline {
             font-size: 0.5em;
         }
-        .desc{
-            p{
+        .desc {
+            p {
                 color: #8e8e8e;
                 font-weight: 100;
                 font-size: 16px;
@@ -132,7 +180,7 @@
             }
         }
     }
-    .info{
+    .info {
         color: #fff;
         position: relative;
         background-color: rgba(0, 0, 0, 0.21);
@@ -141,19 +189,19 @@
         width: 90%;
         margin-top: -6em;
         margin-bottom: 1em;
-        padding: 1em 1em;
-        .info-wrap{
-            &:last-child{
+        padding: 1em;
+        .info-wrap {
+            &:last-child {
                 float: right;
             }
-            .tag{
+            .tag {
                 font-size: 0.7em;
                 padding: 6px 8px;
                 border-radius: 2px;
                 line-height: 0.7em;
                 display: inline-block;
             }
-            .date{
+            .date {
                 vertical-align: middle;
                 margin-left: 1em;
             }
@@ -161,6 +209,6 @@
     }
 }
 
-.success{
+.success {
     background-color: #0ba017 !important;
 }

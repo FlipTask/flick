@@ -2,12 +2,43 @@ import React, {Component} from "react";
 import {connect} from "react-redux";
 import {withRouter} from "react-router-dom";
 import MovieCard from "./../components/MovieList/Card";
-import {fetchTopRatedMovies,fetchTrendingMovies} from "./../actions/api";
+import {fetchTopRatedMovies,fetchTrendingMovies, getLatestMovies} from "./../actions/api";
 import Nav from "./../components/Nav";
 
+const typeToHeadingMap = {
+    top_rated: "Top Rated Movies",
+    trending: "Trending Movies",
+    latest: "Latest Movies",
+}
 class MovieList extends Component {
     state = {
         page : 1,
+    }
+    getDataByType = (type) => {
+        switch(type){
+            case "top_rated":
+                this.props.fetchTopRatedMovies(this.state.page);
+                this.setState({
+                    page : this.state.page+1
+                });
+                return ;
+                
+            case "trending":
+                this.props.fetchTrendingMovies(this.state.page);
+                this.setState({
+                    page : this.state.page+1
+                });
+                return;
+                
+            case "latest":
+                this.props.getLatestMovies(this.state.page);
+                this.setState({
+                    page : this.state.page+1
+                });
+                return;
+            default:
+                return;
+        }
     }
     componentDidMount = () => {
         window.addEventListener("scroll", this.handleScroll);
@@ -15,18 +46,7 @@ class MovieList extends Component {
         const type = match.path.replace("/", "");
         const list = movies[type].list;
         if(list.length == 0){
-            if(type == "top_rated"){
-                this.props.fetchTopRatedMovies(this.state.page);
-                this.setState({
-                    page : this.state.page+1
-                });
-            }
-            if(type == "trending"){
-                this.props.fetchTrendingMovies(this.state.page);
-                this.setState({
-                    page : this.state.page+1
-                });
-            }
+            this.getDataByType(type);
         }
     }
     componentWillUnmount = () => {
@@ -43,18 +63,7 @@ class MovieList extends Component {
         if (windowBottom >= docHeight) {
             const {match} = this.props;
             const type = match.path.replace("/","");
-            if(type == "top_rated"){
-                this.props.fetchTopRatedMovies(this.state.page+1);
-                this.setState({
-                    page : this.state.page+1
-                });
-            }
-            if(type == "trending"){
-                this.props.fetchTrendingMovies(this.state.page+1);
-                this.setState({
-                    page : this.state.page+1
-                });
-            }
+            this.getDataByType(type);
         }
     }
     render() {
@@ -63,19 +72,13 @@ class MovieList extends Component {
         const list = movies[key].list;
         return (
             <div className="container">
-                <Nav />
-                <p>
-                    {key == "top_rated"
-                        ? "Top Rated Movies"
-                        : "Trending Movies"
-}
-                </p>
+                <p>{typeToHeadingMap[key] || ""}</p>
                 <div ref={"movie-list-container"}>
                     {list.map((movie, i) => {
                         return (<MovieCard
                             movie={movie}
                             id={movie.id}
-                            src={movie.backdrop_path}
+                            src={movie.poster_path}
                             title={movie.original_title}
                             rating={movie.vote_average}
                             date={movie.release_date}
@@ -91,5 +94,6 @@ class MovieList extends Component {
 const mapStateToProps = (state) => ({movies: state.app.movies});
 export default withRouter(connect(mapStateToProps, {
     fetchTopRatedMovies,
-    fetchTrendingMovies
+    fetchTrendingMovies,
+    getLatestMovies
 })(MovieList));

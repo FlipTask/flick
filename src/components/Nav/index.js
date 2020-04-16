@@ -26,6 +26,9 @@ class Nav extends Component {
                         <Link to="/">Home</Link>
                     </li>
                     <li>
+                        <Link to="/latest">Latest</Link>
+                    </li>
+                    <li>
                         <Link to="/trending">Trending</Link>
                     </li>
                     <li>
@@ -53,7 +56,7 @@ class Nav extends Component {
                             })
                         }
                     </div>
-                    <button type="button" className="logout-btn" onClick={() => this.props.logoutUser()}>Logout</button>
+                    {/* <button type="button" className="logout-btn" onClick={() => this.props.logoutUser()}>Logout</button> */}
                 </div>
             </div>
         );

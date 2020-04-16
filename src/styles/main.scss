@@ -1,18 +1,132 @@
 @import "./normalize.scss";
 
 body {
-    background:#e2edf3;
+    background: #000000;
     color: #fff;
-    font-family: "Roboto", sans-serif;
+    font-family: 'Nunito Sans', sans-serif;
     font-size: 36px;
 }
 
-.container{
+.container {
     margin: auto 1em;
 }
 
+.BrainhubCarousel {
+    margin: 0 -1em;
+}
+.BrainhubCarousel__dots {
+    .BrainhubCarousel__dot {
+        &::before {
+            width: 8px !important;
+            height: 8px !important;
+            background: #fff !important;
+        }
+        &.BrainhubCarousel__dot--selected {
+            transform: scale(1) !important;
+        }
+    }
+}
+.movie-wrapper {
+    margin-top: 1em;
+}
 
+.__carousel--banner {
+    position: relative;
+    .carousel-image-wrapper {
+        height: 70vh;
+        width: 100%;
+        overflow: hidden;
+        img {
+            max-width: 100%;
+            height: 70vh;
+            width: 100%;
+            object-fit: cover;
+            object-position: top center;
+            filter: blur(6px);
+            transform: scale(1.1);
+        }
+    }
+    .__carousel-banner-movie-info {
+        position: absolute;
+        z-index: 2;
+        width: 40%;
+        height: 100%;
+        padding: 1em;
+        color: #ddd;
+        background: rgb(0,0,0);
+        background: linear-gradient(90deg, black 14%, black 63%, rgba(0, 0, 0, 0) 100%);
+
+        .mov-name {
+            font-weight: 700;
+            display: block;
+            margin-top: 32px;
+            margin-bottom: 16px;
+            font-size: 32px;
+            transition: 0.3s ease all;
+            color: #fff;
+            text-decoration: none;
+            
+            &:hover {
+                font-size: 36px;
+                transition: 0.3s ease all;
+            }
+        }
+        .mov-desc {
+            font-size: 16px;
+            line-height: 1.6em;
+            display: block;
+            font-weight: 300;
+            color: #999;
+        }
+        .movie-info-extras {
+            margin: 0;
+            font-size: 18px;
+            margin-bottom: 1em;
+            .r-yr {
+                margin-right: 1em;
+            }
+        }
+    }
+    .__carousel-poster {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        z-index: 1;
+        img {
+            width: 40vh;
+            height: auto;
+            margin: auto 30% auto 70%;
+        }
+    }
+}
+
+.embed-container {
+    position: relative;
+    padding-bottom: 56.25%;
+    height: 0;
+    overflow: hidden;
+    max-width: 100%;
+}
+.embed-container embed,
+.embed-container iframe,
+.embed-container object {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.__rating--star {
+    display: inline-block;
+    i {
+        color: #FFD700;
+        margin-right: 0.3em;
+    }
+}
 @import "./Components/Input.scss";
 @import "./Components/Login.scss";
 @import "./Components/Movie.scss";
 @import "./Components/Nav.scss";
+@import "./Components/Cert.scss";
