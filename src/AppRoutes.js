@@ -13,7 +13,7 @@ const history = createBrowserHistory();
 class AppRoutes extends Component{
     render(){
         return(
-            <Router history={history}>
+            <Router history={history} basename="/flick">
                 <Switch>
                     <Route path="/login" component={Login} exact/>
                     <AuthorizedRoute path="/watchlist" component={WatchList}/>
