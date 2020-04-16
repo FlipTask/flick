@@ -1,4 +1,4 @@
-# InnovAccer Test(movie-db-test)
+# Flick
 
 ### Default Credentials
     1) username : testuser1 , password : password1
