@@ -8,7 +8,7 @@
 - Change your current directory to the movie-db-test
 - Run (npm install)
 ```sh
-$ cd movie-db-test
+$ cd flick
 $ npm install
 ```
 - After npm install completion, run (npm run start:dev)
